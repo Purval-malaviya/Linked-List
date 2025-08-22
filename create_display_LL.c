@@ -101,12 +101,55 @@ void lastposcreate()
     }
 }
 
+void givenposcreate()
+{
+    node *NN,*curr,*prev;
+    int data,pos;
+
+    printf("Enter the position : ");
+    scanf("%d",&pos);
+    printf("Enter the data for New Node : ");
+    scanf("%d",&data);
+
+    NN=(node*)malloc(sizeof(node));
+    NN->next=NULL;
+    NN->data=data;
+
+    curr=start;
+    prev=NULL;
+    if(start==NULL)
+        start=NN;
+    if(pos==1)
+    {
+       NN->next=curr;
+       start=NN;
+    }   
+    else{
+        int count=1;
+        while(count<pos)
+        {
+            prev=curr;
+            curr=curr->next;
+            count++;
+        }
+        // for(int i=1;i<pos;i++)
+        // {
+        //     prev=curr;
+        //     curr=curr->next;
+        // }
+        prev->next=NN;
+        NN->next=curr;
+    }
+    if(curr==NULL)
+        last=NN;
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -118,6 +161,8 @@ int main()
         else if(ch==4)
             lastposcreate();
         else if(ch==5)
+            givenposcreate();
+        else if(ch==6)
             break;
         else
             printf("\nInvalid choice");
