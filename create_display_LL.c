@@ -63,7 +63,7 @@ void firstposcreate()
     NN->next=NULL;
     NN->data=data;
 
-    if(start==NULL && last==NULL)
+    if(start==NULL)
     {
         start=NN;
         last=NN;
@@ -88,7 +88,7 @@ void lastposcreate()
     NN->next=NULL;
     NN->data=data;
 
-    if(start==NULL && last==NULL)
+    if(start==NULL)
     {
         start=NN;
         last=NN;
@@ -117,8 +117,7 @@ void givenposcreate()
 
     curr=start;
     prev=NULL;
-    if(start==NULL)
-        start=NN;
+
     if(pos==1)
     {
        NN->next=curr;
@@ -157,12 +156,33 @@ void countnode()
     printf("Total nodes : %d\n",count);
 }
 
+int lsum()
+{
+    node *temp;
+    int sum=0;
+    if(start==NULL)
+    {
+        printf("List is Empty !\n");
+        return 0;
+    }
+    else
+    {
+        temp=start;
+        while(temp!=NULL)
+        {
+            sum=sum+temp->data;
+            temp=temp->next;
+        }    
+        printf("Sum of List : %d\n",sum);
+    }
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -178,6 +198,8 @@ int main()
         else if(ch==6)
             countnode();
         else if(ch==7)
+            lsum();
+        else if(ch==8)
             break;
         else
             printf("\nInvalid choice");
