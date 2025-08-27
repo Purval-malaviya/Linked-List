@@ -38,7 +38,7 @@ void display()
     node *temp;
     temp=start;
     if(temp==NULL)
-        printf("\nEmpty list.");
+        printf("Empty list.\n");
     else
     {
         printf("List : ");
@@ -181,10 +181,7 @@ int fdelete()
 {
     node *temp;
     if(start==NULL)
-    {
-        printf("List is empty !");
-        return 0;
-    }
+        printf("List is empty !\n");
     else
     {
         temp=start->next;
@@ -193,12 +190,37 @@ int fdelete()
     }
 }
 
+int ldelete()
+{
+    node *temp,*prev,*curr;
+    if(start==NULL)
+        printf("List is empty !\n");
+    else
+    {
+        // curr=start;             // Using two pointer
+        // prev=NULL;
+        // while(curr->next!=NULL)
+        // {
+        //     prev=curr;
+        //     curr=curr->next;
+        // }
+        // free(curr);
+        // last=prev;  
+        temp=start;
+        while(temp->next!=last)
+            temp=temp->next;
+        free(last);
+        last=temp;
+        last->next=NULL;
+    } 
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Delete First Node\n9->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Delete First Node\n9->Delete Last Node\n10->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -218,6 +240,8 @@ int main()
         else if(ch==8)
             fdelete();
         else if(ch==9)
+            ldelete();
+        else if(ch==10)
             break;
         else
             printf("\nInvalid choice");
