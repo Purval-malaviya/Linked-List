@@ -161,10 +161,7 @@ int lsum()
     node *temp;
     int sum=0;
     if(start==NULL)
-    {
         printf("List is Empty !\n");
-        return 0;
-    }
     else
     {
         temp=start;
@@ -177,7 +174,7 @@ int lsum()
     }
 }
 
-int fdelete()
+void fdelete()
 {
     node *temp;
     if(start==NULL)
@@ -190,7 +187,7 @@ int fdelete()
     }
 }
 
-int ldelete()
+void ldelete()
 {
     node *temp,*prev,*curr;
     if(start==NULL)
@@ -215,12 +212,49 @@ int ldelete()
     } 
 }
 
+int givenposdelete()
+{
+    node *prev,*curr; 
+    curr=start;
+    prev=NULL;
+    if(start==NULL)
+    {
+        printf("List is empty !\n");
+        return 0;
+    }
+
+    int pos;
+    printf("Enter the position : ");
+    scanf("%d",&pos);
+    if(pos==1)
+    {
+        // start=start->next;  //Second way
+        // free(curr);
+        curr=curr->next;
+        free(start);
+        start=curr;
+    }
+    else
+    {
+        int count=1;
+        while(count<pos)
+        {
+            prev=curr;
+            curr=curr->next;
+            count++;
+        }
+        prev->next=curr->next;
+        free(curr);
+    }
+    last->next=NULL;
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Delete First Node\n9->Delete Last Node\n10->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Delete First Node\n9->Delete Last Node\n10->Delete Given Position\n11->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -242,6 +276,8 @@ int main()
         else if(ch==9)
             ldelete();
         else if(ch==10)
+            givenposdelete();
+        else if(ch==11)
             break;
         else
             printf("\nInvalid choice");
