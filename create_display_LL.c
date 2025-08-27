@@ -177,12 +177,28 @@ int lsum()
     }
 }
 
+int fdelete()
+{
+    node *temp;
+    if(start==NULL)
+    {
+        printf("List is empty !");
+        return 0;
+    }
+    else
+    {
+        temp=start->next;
+        free(start);
+        start=temp;
+    }
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->Create node at first position\n4->Create node at last position\n5->Create node given position\n6->Count Nodes\n7->Sum of list\n8->Delete First Node\n9->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -200,6 +216,8 @@ int main()
         else if(ch==7)
             lsum();
         else if(ch==8)
+            fdelete();
+        else if(ch==9)
             break;
         else
             printf("\nInvalid choice");
