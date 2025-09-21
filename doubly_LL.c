@@ -60,6 +60,11 @@ void insertfirst()
     node *NN;
     int data;
 
+    if(first==NULL)
+    {
+        printf("List is Empty !\n");
+        return;
+    }
     printf("Enter the value :");
     scanf("%d",&data);
 
@@ -77,6 +82,11 @@ void insertlast()
     node *NN;
     int data;
 
+    if(first==NULL)
+    {
+        printf("List is Empty !\n");
+        return;
+    }
     printf("Enter the value :");
     scanf("%d",&data);
 
@@ -96,6 +106,11 @@ void insertpos()
     prev=NULL;
     int count=1,pos,data;
 
+    if(first==NULL)
+    {
+        printf("List is Empty !\n");
+        return;
+    }
     printf("Enter the positon : ");
     scanf("%d",&pos);
 
@@ -129,13 +144,36 @@ void insertpos()
         last=NN;
 }
 
+void deletefirst()
+{
+    if(first==NULL)
+    {
+        printf("List is Empty !\n");
+        return;
+    }
+    else
+    {
+        if(first==last)
+        {
+            printf("Element deleted %d\n",first->data);
+            free(first);
+            first=last=NULL;
+            return;
+        }
+        printf("Element deleted %d\n",first->data);
+        first=first->right;
+        free(first->left);
+        first->left=NULL;
+    }
+}
+
 int main()
 {
     int ch;
 
     while(1)
     {
-        printf("\n1.Create list\n2.Display\n3.Insert at First\n4.Insert at Last\n5.Insert given position\n6.Exit\nEnter the choice :");
+        printf("\n1.Create list\n2.Display\n3.Insert at First\n4.Insert at Last\n5.Insert given position\n6.Delete at First\n7.Exit\nEnter the choice :");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -149,6 +187,8 @@ int main()
         else if(ch==5)
             insertpos();
         else if(ch==6)
+            deletefirst();
+        else if(ch==7)
             break;
         else
             printf("Invalid choice....");
