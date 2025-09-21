@@ -66,11 +66,27 @@ void insertfirst()
     NN=(node*)malloc(sizeof(node));
     NN->left=NULL;
     NN->data=data;
-    NN->right=NULL;
 
     NN->right=first;
     first->left=NN;
     first=NN;
+}
+
+void insertlast()
+{
+    node *NN;
+    int data;
+
+    printf("Enter the value :");
+    scanf("%d",&data);
+
+    NN=(node*)malloc(sizeof(node));
+    NN->data=data;
+    NN->right=NULL;
+
+    last->right=NN;
+    NN->left=last;
+    last=NN;
 }
 
 void insertpos()
@@ -119,7 +135,7 @@ int main()
 
     while(1)
     {
-        printf("\n1.Create list\n2.Display\n3.Insert at First\n4.Insert given position\n5.Exit\nEnter the choice :");
+        printf("\n1.Create list\n2.Display\n3.Insert at First\n4.Insert at Last\n5.Insert given position\n6.Exit\nEnter the choice :");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -129,8 +145,10 @@ int main()
         else if(ch==3)
             insertfirst();
         else if(ch==4)
-            insertpos();
+            insertlast();
         else if(ch==5)
+            insertpos();
+        else if(ch==6)
             break;
         else
             printf("Invalid choice....");
