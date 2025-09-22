@@ -178,7 +178,6 @@ void ldelete()
             temp=temp->next;
         free(last);
         last=temp;
-        last->next=NULL;
     }
     last->next=start;
 }
