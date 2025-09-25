@@ -84,12 +84,37 @@ void ascsortlist()
     printf("\n");
 }
 
+void descsortlist()
+{
+    node *temp,*temp1;
+    if(start==NULL)
+    {
+        printf("List is Empty !\n");
+        return;
+    }
+    temp=start;
+    printf("DESC Sorted List :");
+    while(temp!=NULL)
+    {
+        temp1=temp->next;
+        while(temp1!=NULL)
+        {
+            if(temp->data < temp1->data)
+                swap(temp,temp1);
+            temp1=temp1->next;
+        }
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("\n");
+}
+
 int main()
 {
     int ch;
     while(1)
     {
-        printf("\n1->Create list\n2->Display \n3->Sort List\n4->Exit\nEnter the choice : ");
+        printf("\n1->Create list\n2->Display \n3->ASE Sort List\n4->DESC Sort List\n5->Exit\nEnter the choice : ");
         scanf("%d",&ch);
 
         if(ch==1)
@@ -99,6 +124,8 @@ int main()
         else if(ch==3)
            ascsortlist();
         else if(ch==4)
+            descsortlist();
+        else if(ch==5)
             break;
         else
             printf("\nInvalid choice");
